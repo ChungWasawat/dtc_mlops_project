@@ -2,7 +2,7 @@
 1. install pipenv
     ```pip install pipenv```    
     - install dependencies
-        ```pipenv install --python==3.10```    
-    - install dependencies for development
-        ```pipenv install --dev pylint```     
+        ```pipenv install pandas --python==3.10```    
+    - install dependencies for development (test, formatiing)    
+        ```pipenv install --dev pylint black isort```     
 2. 
