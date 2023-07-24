@@ -2,6 +2,9 @@
 best_practice_test/
 data/
 
+# jupyter notebook 
+.ipynb_checkpoints
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

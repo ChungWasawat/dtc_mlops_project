@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 pandas = "*"
+scikit-learn = "*"
+mlflow = "*"
+prefect = "*"
 
 [dev-packages]
 pylint = "*"
