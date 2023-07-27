@@ -1,6 +1,7 @@
 # folder
 best_practice_test/
 data/
+others/
 
 # jupyter notebook 
 .ipynb_checkpoints
