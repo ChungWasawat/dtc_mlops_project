@@ -205,7 +205,7 @@ def prepare_data_test_set(df_train, df_test):
 # dangerous-default-value:
 # https://stackoverflow.com/questions/26320899/why-is-the-empty-dictionary-a-dangerous-default-value-in-python
 @flow
-def main_flow_coupon_accepting(lr, mc, md, rl, ra) -> None:
+def main_flow(lr, mc, md, rl, ra) -> None:
     """The main model training pipeline"""
     # input path
     input_path = "https://archive.ics.uci.edu/static/public/603/in+vehicle+coupon+recommendation.zip"
@@ -266,6 +266,4 @@ if __name__ == "__main__":
     REG_LAMBDA = 0.02
     REG_ALPHA = 0.02
 
-    main_flow_coupon_accepting(
-        LEARNING_RATE, MIN_CHILD, MAX_DEPTH, REG_LAMBDA, REG_ALPHA
-    )
+    main_flow(LEARNING_RATE, MIN_CHILD, MAX_DEPTH, REG_LAMBDA, REG_ALPHA)
