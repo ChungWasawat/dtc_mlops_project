@@ -1,5 +1,5 @@
 1. install terraform
-    - In Windows, download the zip file and extract the file at `C:\terraform`
+    - On Windows 11, download the zip file and extract the file at `C:\terraform`
     - add this path to `Path` of system environment variable
     - `terraform --version` to check if it is installed successfully
 2. to keep terraform state on S3, need to create a bucket manually first
