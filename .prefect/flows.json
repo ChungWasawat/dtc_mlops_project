@@ -1,3 +1,4 @@
 {
+  "main-flow": "code\\model.py:main_flow",
   "main-flow-coupon-accepting": "code\\model.py:main_flow_coupon_accepting"
 }

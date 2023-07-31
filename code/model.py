@@ -1,8 +1,8 @@
 # pylint: disable=import-error, ungrouped-imports, invalid-name, line-too-long, too-many-locals, too-many-arguments
 """Model training pipeline"""
-# import argparse
 import os
 import pickle
+import argparse
 from pathlib import Path
 from datetime import date
 
@@ -205,7 +205,13 @@ def prepare_data_test_set(df_train, df_test):
 # dangerous-default-value:
 # https://stackoverflow.com/questions/26320899/why-is-the-empty-dictionary-a-dangerous-default-value-in-python
 @flow
-def main_flow(lr, mc, md, rl, ra) -> None:
+def main_flow(
+    lr=0.01,
+    mc=1.0,
+    md=30,
+    rl=0.02,
+    ra=0.02,
+) -> None:
     """The main model training pipeline"""
     # input path
     input_path = "https://archive.ics.uci.edu/static/public/603/in+vehicle+coupon+recommendation.zip"
@@ -232,38 +238,31 @@ def main_flow(lr, mc, md, rl, ra) -> None:
 
 
 if __name__ == "__main__":
-    ## use argparse to tune hyperparams from command line
-    # parser = argparse.ArgumentParser(
-    #     description='Change parameters to train or Predict test set.'
-    # )
-    # parser.add_argument(
-    #     '-lr', default=0.01, type=float, help='enter float number for learning_rate'
-    # )
-    # parser.add_argument(
-    #     '-md', default=30, type=int, help='enter decimal number for min_child_weight'
-    # )
-    # parser.add_argument(
-    #     '-mc', default=1.0, type=float, help='enter decimal number for max_depth'
-    # )
-    # parser.add_argument(
-    #     '-rl', default=0.02, type=float, help='enter float number for reg_lambda'
-    # )
-    # parser.add_argument(
-    #     '-ra', default=0.02, type=float, help='enter float number for reg_alpha'
-    # )
-    # args = parser.parse_args()
+    # use argparse to tune hyperparams from command line
+    parser = argparse.ArgumentParser(
+        description='Change parameters to train or Predict test set.'
+    )
+    parser.add_argument(
+        '-lr', default=0.01, type=float, help='enter float number for learning_rate'
+    )
+    parser.add_argument(
+        '-md', default=30, type=int, help='enter decimal number for min_child_weight'
+    )
+    parser.add_argument(
+        '-mc', default=1.0, type=float, help='enter decimal number for max_depth'
+    )
+    parser.add_argument(
+        '-rl', default=0.02, type=float, help='enter float number for reg_lambda'
+    )
+    parser.add_argument(
+        '-ra', default=0.02, type=float, help='enter float number for reg_alpha'
+    )
+    args = parser.parse_args()
 
-    # LEARNING_RATE = args.lr
-    # MAX_DEPTH = args.md
-    # MIN_CHILD = args.mc
-    # REG_LAMBDA = args.rl
-    # REG_ALPHA = args.ra
-
-    # can tune from prefect deployment
-    LEARNING_RATE = 0.01
-    MAX_DEPTH = 30
-    MIN_CHILD = 1.0
-    REG_LAMBDA = 0.02
-    REG_ALPHA = 0.02
+    LEARNING_RATE = args.lr
+    MAX_DEPTH = args.md
+    MIN_CHILD = args.mc
+    REG_LAMBDA = args.rl
+    REG_ALPHA = args.ra
 
     main_flow(LEARNING_RATE, MIN_CHILD, MAX_DEPTH, REG_LAMBDA, REG_ALPHA)
