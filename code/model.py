@@ -206,11 +206,12 @@ def prepare_data_test_set(df_train, df_test):
 # https://stackoverflow.com/questions/26320899/why-is-the-empty-dictionary-a-dangerous-default-value-in-python
 @flow
 def main_flow(
-    lr=0.01,
-    mc=1.0,
-    md=30,
-    rl=0.02,
-    ra=0.02,
+    lr: float = 0.01,
+    mc: float = 1.0,
+    md: int = 30,
+    rl: float = 0.02,
+    ra: float = 0.02,
+    prepare_test: bool = False,
 ) -> None:
     """The main model training pipeline"""
     # input path
@@ -233,8 +234,9 @@ def main_flow(
     # Train
     train_best_model(X_train, X_val, y_train, y_val, dv, lr, mc, md, rl, ra)
 
-    # save full_train and test set on local machine
-    prepare_data_test_set(df_full_train, df_test)
+    if prepare_test is True:
+        # save full_train and test set on local machine
+        prepare_data_test_set(df_full_train, df_test)
 
 
 if __name__ == "__main__":
@@ -257,6 +259,9 @@ if __name__ == "__main__":
     parser.add_argument(
         '-ra', default=0.02, type=float, help='enter float number for reg_alpha'
     )
+    parser.add_argument(
+        '-test', default=False, type=bool, help='enter float number for reg_alpha'
+    )
     args = parser.parse_args()
 
     LEARNING_RATE = args.lr
@@ -265,4 +270,6 @@ if __name__ == "__main__":
     REG_LAMBDA = args.rl
     REG_ALPHA = args.ra
 
-    main_flow(LEARNING_RATE, MIN_CHILD, MAX_DEPTH, REG_LAMBDA, REG_ALPHA)
+    BOOL_TEST = args.test
+
+    main_flow(LEARNING_RATE, MIN_CHILD, MAX_DEPTH, REG_LAMBDA, REG_ALPHA, BOOL_TEST)
