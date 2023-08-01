@@ -1,0 +1,41 @@
+name: CI-Tests
+on:
+    pull_request:
+      branches:
+        - 'develop'
+      paths:
+        - 'code/**'
+
+
+env:
+    AWS_DEFAULT_REGION: 'eu-west-1'
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+
+jobs:
+    test:
+      runs-on: ubuntu-latest
+      steps:
+          - uses: actions/checkout@v2
+          - name: Set up Python 3.9
+            uses: actions/setup-python@v2
+            with:
+              python-version: 3.9   
+
+          - name: Install dependencies
+            working-directory: "code"
+            run: pip install pipenv && pipenv install --dev
+
+          - name: Run Unit tests
+            working-directory: "code"
+            run: pipenv run pytest tests/
+    
+          - name: Lint
+            working-directory: "code"
+            run: pipenv run pylint --recursive=y .
+
+          - name: Integration Test
+            working-directory: 'code/integraton-test'
+            run: |
+              . run.sh
