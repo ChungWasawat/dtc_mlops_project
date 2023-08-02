@@ -22,5 +22,5 @@
 6. create a server for sending request to predict the result
     * `docker build -t coupon-accepting-prediction-service:v1 .`
     * `docker run -it --rm -p 9696:9696 coupon-accepting-prediction-service:v1`
-
+    * `docker run -it --rm -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -p 9696:9696 coupon-accepting-prediction-service:v1` to pass credentials to load model from AWS S3
 
