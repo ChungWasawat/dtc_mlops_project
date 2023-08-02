@@ -8,6 +8,7 @@ pandas = "*"
 scikit-learn = "*"
 mlflow = "*"
 prefect = "*"
+xgboost = "*"
 
 [dev-packages]
 pylint = "*"

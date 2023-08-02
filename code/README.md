@@ -19,5 +19,8 @@
     * use MLFlow UI to track the experiment on `http://aws_bucket_uri:5000/`
 5. after some experiments are done, can register the best model with `best_model.py` 
     * can create a Prefect deployment of this file or just `python best_model.py` on terminal
+6. create a server for sending request to predict the result
+    * `docker build -t coupon-accepting-prediction-service:v1 .`
+    * `docker run -it --rm -p 9696:9696 coupon-accepting-prediction-service:v1`
 
 
