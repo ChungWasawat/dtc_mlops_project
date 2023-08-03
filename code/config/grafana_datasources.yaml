@@ -1,0 +1,16 @@
+# config file version
+apiVersion: 1
+
+# list of datasources to insert/update
+# available in the database
+datasources:
+  - name: PostgreSQL
+    type: postgres
+    access: proxy # which way to access the database
+    url: db.:5432 # match port number in docker-compose.yml
+    database: test # database name
+    user: postgres
+    secureJsonData:
+      password: 'example' # password in docker-compose.yml
+    jsonData:
+      sslmode: 'disable'
