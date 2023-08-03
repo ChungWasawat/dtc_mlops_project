@@ -5,9 +5,9 @@ This project is a MLOps project for MLOps Zoomcamp course by DataTalks.Club. The
 ## Dataset Description
 [source](https://archive.ics.uci.edu/dataset/603/in+vehicle+coupon+recommendation)   
 I have selected some features that I am interrested in. The features are as follows:
-    - destination: The person's destination {No Urgent Place, Home, Work}
-    - weather: Weather type {Sunny, Rainy, Snowy}
-    - time: Time of the day {7AM, 10AM, 2PM, 6PM, 10PM}
-    - coupon: Coupon category {Restaurant(<$20), Restaurant($20-$50), Coffee House, Bar, Carry out & Take away}
-    - expiration: the time the coupon will expire in 2 hours or 1 day {2h, 1d}
-    - direction_same: The person's destination and the merchant's location are at the same direction {0(No), 1(Yes)}
+- destination: The person's destination {No Urgent Place, Home, Work}
+- weather: Weather type {Sunny, Rainy, Snowy}
+- time: Time of the day {7AM, 10AM, 2PM, 6PM, 10PM}
+- coupon: Coupon category {Restaurant(<$20), Restaurant($20-$50), Coffee House, Bar, Carry out & Take away}
+- expiration: the time the coupon will expire in 2 hours or 1 day {2h, 1d}
+- direction_same: The person's destination and the merchant's location are at the same direction {0(No), 1(Yes)}
