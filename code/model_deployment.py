@@ -1,4 +1,4 @@
-# pylint: disable=import-error, ungrouped-imports
+# pylint: disable=import-error, ungrouped-imports, redefined-outer-name
 """create server to response prediction request"""
 import os
 import pickle
@@ -26,11 +26,33 @@ def load_pickle(filename):
 
 
 def prepare_features(coupon_rec):
-    """prepare features for prediction but not used in this project"""
-    # features = {}
-    dict_vector = load_pickle('final_preprocessor.b')
-
+    """prepare features for prediction"""
     columns = [
+        'destination',
+        'weather',
+        'time',
+        'coupon',
+        'expiration',
+        'same_direction',
+        'coupon_accepting',
+    ]
+
+    temp_df = pd.DataFrame(coupon_rec)
+
+    temp_df.rename(
+        columns={'direction_same': 'same_direction', 'Y': 'coupon_accepting'},
+        inplace=True,
+    )
+
+    temp_df = temp_df[columns]
+
+    return temp_df
+
+
+def convert_features_to_dmatrix(dataframe):
+    """convert dataframe to DMatrix"""
+    # values in json are scalar, require index
+    features = [
         'destination',
         'weather',
         'time',
@@ -39,15 +61,14 @@ def prepare_features(coupon_rec):
         'same_direction',
     ]
 
-    # values in json are scalar, require index
-    temp_df = pd.DataFrame(coupon_rec)
+    dict_vector = load_pickle('final_preprocessor.b')
 
-    temp_dicts = temp_df[columns].to_dict(orient="records")
+    temp_dicts = dataframe[features].to_dict(orient="records")
     tf_temp_dicts = dict_vector.transform(temp_dicts)
-    target = temp_df['coupon_accepting'].values
+    target = dataframe['coupon_accepting'].values
 
-    features = xgb.DMatrix(tf_temp_dicts, label=target)
-    return features
+    matrix = xgb.DMatrix(tf_temp_dicts, label=target)
+    return matrix
 
 
 def predict(features):
