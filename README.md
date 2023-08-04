@@ -34,7 +34,7 @@ I have selected some features that I am interrested in. The features are as foll
 * Terraform
   1. used to create AWS resources
 
-## Project pipeline
+## AWS Resources used in this project 
 ![AWS resource](https://github.com/ChungWasawat/dtc_mlops_project/blob/main/img/aws.png)
 
 ## Project Deployment
