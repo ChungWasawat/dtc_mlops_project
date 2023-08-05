@@ -38,4 +38,22 @@ jobs:
           terraform apply -auto-approve -var-file=vars/prod.tfvars
           echo "::set-output name=model_bucket::$(terraform output model_bucket | xargs)"
 
+      # Deploy
+      - name: Get model artifacts
+      # The steps here are not suited for production.
+      # In practice, retrieving the latest model version or RUN_ID from a service like MLflow or DVC can also be integrated into a CI/CD pipeline.
+      # But due to the limited scope of this workshop, we would be keeping things simple.
+      # In practice, you would also have a separate training pipeline to write new model artifacts to your Model Bucket in Prod.
+
+        id: get-model-artifacts
+        working-directory: "06-best-practices/code"
+        env:
+          MODEL_BUCKET_DEV: "mlflow-models-alexey"
+          MODEL_BUCKET_PROD: ${{ steps.tf-apply.outputs.model_bucket }}
+        run: |
+          export RUN_ID=$(aws s3api list-objects-v2 --bucket ${MODEL_BUCKET_DEV} \
+          --query 'sort_by(Contents, &LastModified)[-1].Key' --output=text | cut -f2 -d/)
+          aws s3 sync s3://${MODEL_BUCKET_DEV} s3://${MODEL_BUCKET_PROD}
+          echo "::set-output name=run_id::${RUN_ID}"
+
 
