@@ -4,7 +4,7 @@
     - install dependencies       
         ```pipenv install pandas scikit-learn mlflow prefect --python==3.9```
     - install dependencies for development (test, formatiing)   
-        ```pipenv install --dev pylint black isort pre-commit```
+        ```pipenv install --dev pylint black isort pre-commit pytest```
 2. set values in `pyproject.toml` and `.pre-commit-config.yaml` for formatting and linting
     * need to `pre-commit install` to install pre-commit hook
 3. set up MLflow tracking server
