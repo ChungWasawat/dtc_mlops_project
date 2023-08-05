@@ -22,19 +22,23 @@ I have selected some features that I am interrested in. The features are as foll
   - isort 
   - pre-commit
 * MLflow==2.4
+  1. used to track experiment and register the best model for deployment
 * Prefect==2.11.2
+  1. used to orchestrate the pipeline for training model and tuning hyperparameters 
 * Docker
+  1. used to create a server for sending request to predict the result
 * AWS
-  - EC2
-  - S3
-  - RDS
+  - EC2   (MLflow tracking server)
+  - S3    (MLflow artifact storage and tfstate storage)
+  - RDS   (MLflow backend database)
 * Terraform
+  1. used to create AWS resources
 
-## Project pipeline
-[img]
+## AWS Resources used in this project 
+![AWS resource](https://github.com/ChungWasawat/dtc_mlops_project/blob/main/img/aws.png)
 
-## Project Deployment
-[create infrastruce by Terraform](https://github.com/ChungWasawat/dtc_mlops_project/blob/main/infrastructure/README.md)    
+## Project Deployment Instructions
+[create infrastruce with Terraform](https://github.com/ChungWasawat/dtc_mlops_project/blob/main/code/infrastructure/README.md)    
 [implement code](https://github.com/ChungWasawat/dtc_mlops_project/blob/main/code/README.md)    
 
 ## Special Thanks:
