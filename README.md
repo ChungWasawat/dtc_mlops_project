@@ -38,7 +38,7 @@ I have selected some features that I am interrested in. The features are as foll
 ![AWS resource](https://github.com/ChungWasawat/dtc_mlops_project/blob/main/img/aws.png)
 
 ## Project Deployment Instructions
-[create infrastruce with Terraform](https://github.com/ChungWasawat/dtc_mlops_project/blob/main/infrastructure/README.md)    
+[create infrastruce with Terraform](https://github.com/ChungWasawat/dtc_mlops_project/blob/main/code/infrastructure/README.md)    
 [implement code](https://github.com/ChungWasawat/dtc_mlops_project/blob/main/code/README.md)    
 
 ## Special Thanks:
