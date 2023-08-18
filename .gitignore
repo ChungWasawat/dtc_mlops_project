@@ -2,6 +2,7 @@
 best_practice_test/
 data/
 others/
+integration-test/
 
 # terraform
 # Local .terraform directories

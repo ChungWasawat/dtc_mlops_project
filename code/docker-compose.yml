@@ -1,9 +1,9 @@
 version: '3.7'
 
 # to store artifacts of model when running: data source, dashboards, configuration for grafana
-volumes: 
-  grafana_data: 
-    name: grafana_data_volume
+#volumes: 
+#  grafana_data: 
+#    name: grafana_data_volume
 
 # network to communicate between services (like 2 networks below)
 networks:
@@ -17,37 +17,50 @@ services:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 
+#  integration-test:
+#    image: ${LOCAL_IMAGE_NAME}
+#    ports:
+#      - "9696:9696"
+#    environment:
+#      - RUN_ID=Test123
+#      - AWS_DEFAULT_REGION=eu-west-1
+#      - MODEL_LOCATION=/app/model
+#      - AWS_ACCESS_KEY_ID=abc
+#      - AWS_SECRET_ACCESS_KEY=xyz
+#    volumes:
+#      - "./best_model:/app/model"
+
   # database -postgres
-  db:
-    image: postgres
-    restart: always # restart every time when run docker-compose up
-    environment:
-      POSTGRES_PASSWORD: example
-    ports:
-      - "5432:5432"
-    networks:
-      - back-tier
+#  db:
+#    image: postgres
+#    restart: always # restart every time when run docker-compose up
+#    environment:
+#      POSTGRES_PASSWORD: example
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - back-tier
 
   # manage database content
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - "8080:8080"
-    networks:
-      - back-tier
-      - front-tier  # need to access from browser
+#  adminer:
+#    image: adminer
+#    restart: always
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - back-tier
+#      - front-tier  # need to access from browser
 
-  grafana:
-    image: grafana/grafana
-    user: "472"
-    ports:
-      - "3000:3000"
-    volumes:  # store some information on grafana
-      - ./config/grafana_datasources.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
-      - ./config/grafana_dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
-      - ./dashboards:/opt/grafana/dashboards
-    networks:
-      - back-tier # communicate with db
-      - front-tier  # access dashboards from browser
-    restart: always
+#  grafana:
+#    image: grafana/grafana
+#    user: "472"
+#    ports:
+#      - "3000:3000"
+#    volumes:  # store some information on grafana
+#      - ./config/grafana_datasources.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+#      - ./config/grafana_dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
+#      - ./dashboards:/opt/grafana/dashboards
+#    networks:
+#      - back-tier # communicate with db
+#      - front-tier  # access dashboards from browser
+#    restart: always
