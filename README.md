@@ -1,6 +1,6 @@
 # Coupon Accepting Prediction
 ## Project Description
-This project is a MLOps project for MLOps Zoomcamp course by DataTalks.Club. The goal of this project is to enhance my understanding of building an MLOps pipeline. The main model used for predicting whether a person will accept recommended coupons while they are in their vehicles is XGBoost because I want to try a tree-based model in the classification problem . The dataset utilized for this project is the "In-Vehicle Coupon Recommendation" dataset from the UCI Machine Learning Repository. The dataset contains various features related to users, merchants, and the coupons to be recommended.
+This project is a MLOps project for MLOps Zoomcamp course by DataTalks.Club. The goal of this project is to enhance my understanding of building an MLOps pipeline. The main model used for predicting whether a person will accept recommended coupons while they are in their vehicles is XGBoost because I want to try a tree-based model in the classification problem. The dataset utilized for this project is the "In-Vehicle Coupon Recommendation" dataset from the UCI Machine Learning Repository. The dataset contains various features related to users, merchants, and the coupons to be recommended.
 
 ## Dataset Description
 [source](https://archive.ics.uci.edu/dataset/603/in+vehicle+coupon+recommendation)   
@@ -22,17 +22,20 @@ I have selected some features that I am interrested in. The features are as foll
   - isort 
   - pre-commit
 * MLflow==2.4
-  1. used to track experiment and register the best model for deployment
 * Prefect==2.11.2
-  1. used to orchestrate the pipeline for training model and tuning hyperparameters 
 * Docker
-  1. used to create a server for sending request to predict the result
 * AWS
-  - EC2   (MLflow tracking server)
-  - S3    (MLflow artifact storage and tfstate storage)
-  - RDS   (MLflow backend database)
+  - EC2   
+  - S3    
+  - RDS   
 * Terraform
-  1. used to create AWS resources
+#### Description
+Initially, Terraform is employed to establish AWS resources like EC2 (to function as the MLflow tracking server), S3 (for storing tfstate and MLflow models), and RDS (to serve as the MLflow backend database). Next, MLflow is used to track parameters and metrics of the experiment and find the optimal model to be registered for production. This entire workflow can be orchestrated and scheduled through Prefect, which also supports notifications like emails or other methods. For model deployment, Docker can help to create a server to handle prediction result requests. To be more automated, a CI/CD pipeline can be implemented with GitHub Actions through the yml file. The pipeline will be triggered when a new commit is pushed to the develop branch.         
+Python modules: 
+- environment: pipenv
+- format and lint: pylint, black, isort, pre-commit
+- model: scikit-learn, xgboost
+
 
 ## AWS Resources used in this project 
 ![AWS resource](https://github.com/ChungWasawat/dtc_mlops_project/blob/main/img/aws.png)
