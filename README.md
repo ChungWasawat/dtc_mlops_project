@@ -30,7 +30,7 @@ I have selected some features that I am interrested in. The features are as foll
   - RDS   
 * Terraform
 #### Description
-Initially, Terraform is employed to establish AWS resources like EC2 (to function as the MLflow tracking server), S3 (for storing tfstate and MLflow models), and RDS (to serve as the MLflow backend database). Next, MLflow is used to track parameters and metrics of the experiment and find the optimal model to be registered for production. This entire workflow can be orchestrated and scheduled through Prefect, which also supports notifications like emails or other methods. For model deployment, Docker can help to create a server to handle prediction result requests.    
+Initially, Terraform is employed to establish AWS resources like EC2 (to function as the MLflow tracking server), S3 (for storing tfstate and MLflow models), and RDS (to serve as the MLflow backend database). Next, MLflow is used to track parameters and metrics of the experiment and find the optimal model to be registered for production. This entire workflow can be orchestrated and scheduled through Prefect, which also supports notifications like emails or other methods. For model deployment, Docker can help to create a server to handle prediction result requests. To be more automated, a CI/CD pipeline can be implemented with GitHub Actions through the yml file. The pipeline will be triggered when a new commit is pushed to the develop branch.         
 Python modules: 
 - environment: pipenv
 - format and lint: pylint, black, isort, pre-commit
